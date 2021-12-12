@@ -11,10 +11,12 @@ enum exit_codes
 	EXIT_CMD_TIMED_OUT,
 	EXIT_ABORTED,
 	EXIT_UNKNOWN_ERROR,
-	EXIT_PAYLOAD_ERROR
+	EXIT_PAYLOAD_ERROR,
+	EXIT_WRONG_USER_INPUT
 };
 
 bool get_confirmation(const char* prompt);
-exit_codes payload(_TCHAR* args[]);
+exit_codes payload(int argc, char* args[]);
 bool load_lib();
 bool init_lib();
+void free_lib();

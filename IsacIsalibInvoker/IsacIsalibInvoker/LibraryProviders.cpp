@@ -72,6 +72,20 @@ exit_codes send_cnc_cmd(short cmd, short data, char* pbuf)
 	return EXIT_PAYLOAD_ERROR;
 }
 
+exit_codes send_ctasto(cnc_ctasto_keys key, char* pbuf)
+{
+	switch (key)
+	{
+	case CTASTO_REINIT_CUSTOM_MEM:
+	case CTASTO_RESET:
+	case CTASTO_START:
+	case CTASTO_HOLD:
+		break;
+	default: throw std::exception("Thid CTASTO key is not supported.");
+	}
+	return send_cnc_cmd(CNC_CTASTO, key, pbuf);
+}
+
 void free_lib()
 {
 	isalib.dispose();

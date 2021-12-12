@@ -45,3 +45,5 @@ typedef struct isalib_interop isalib_interop_t;
 
 template<typename T> bool load_function(T& member, const char* name);
 exit_codes send_cnc_cmd(short cmd, short data, char* pbuf);
+
+exit_codes send_ctasto(cnc_ctasto_keys key, char* pbuf = NULL);
