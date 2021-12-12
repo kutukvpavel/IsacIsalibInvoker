@@ -1,24 +1,25 @@
 #include "stdafx.h"
 #include "Globals.h"
+#include "LibraryProviders.h"
 
-exit_codes payload()
+exit_codes payload(_TCHAR* args[])
 {
-	try
+	exit_codes res;
+	if (get_confirmation("Press Y to reload FILLAV.TAB..."))
 	{
-		short sent = isalib.send_cnc(CNC_CSET, 0, "ALL");
-		if (sent) return EXIT_FAILED_TO_SEND_CMD;
-		int timeout = 0;
-		do
-		{
-			Sleep(1);
-			timeout++;
-			if (timeout > CNC_CMD_TIMEOUT) return EXIT_CMD_TIMED_OUT;
-		} while (isalib.test_last_cmd());
-		return EXIT_OK;
+		if (res = send_cnc_cmd(CNC_CTASTO, CTASTO_REINIT_CUSTOM_MEM, NULL)) return res;
 	}
-	catch (std::exception ex)
+	if (get_confirmation("Press Y to RESET the CNC..."))
 	{
-		std::cout << ex.what() << std::endl;
+		if (res = send_cnc_cmd(CNC_CTASTO, CTASTO_RESET, NULL)) return res;
 	}
-	return EXIT_PAYLOAD_ERROR;
+	if (get_confirmation("Press Y to START current part-program..."))
+	{
+		if (res = send_cnc_cmd(CNC_CTASTO, CTASTO_START, NULL)) return res;
+	}
+	if (get_confirmation("Press Y to HOLD current part-program..."))
+	{
+		if (res = send_cnc_cmd(CNC_CTASTO, CTASTO_HOLD, NULL)) return res;
+	}
+	return EXIT_OK;
 }

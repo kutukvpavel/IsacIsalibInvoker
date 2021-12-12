@@ -63,6 +63,7 @@
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="1"
+				RandomizedBaseAddress="1"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -218,6 +219,10 @@
 						Name="VCCustomBuildTool"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\LibraryProviders.h"
+				>
 			</File>
 			<File
 				RelativePath=".\stdafx.h"
