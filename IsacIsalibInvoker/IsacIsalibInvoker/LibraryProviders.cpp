@@ -30,7 +30,7 @@ bool load_lib()
 			if (!load_function(isalib.dirnav, "dirnav")) return false;
 			if (!load_function(isalib.send_cnc, "SendCnc")) return false;
 			if (!load_function(isalib.test_last_cmd, "TstCmdCnc")) return false;
-			if (!load_function(isalib.dispose, "???")) return false;
+			if (!load_function(isalib.dispose, "Terminate")) return false;
 			return true;
 		}
 		else
